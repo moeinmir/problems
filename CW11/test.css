@@ -1,0 +1,20 @@
+.text {
+    background-color: red;
+    font-weight: bold;
+    border: 3px;
+    text-align: center ;
+    
+
+
+}
+
+.bord {
+    border: solid 1px lightblue;
+        width: 200px;
+        height: 300px;
+        border-radius: 5vmax;
+        margin: 50px;
+        
+   }
+}
+
