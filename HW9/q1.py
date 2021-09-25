@@ -9,8 +9,8 @@ class Ticket:
             print("your credit is not enoough")
 
 
-class one_way(Ticket)
-    
+
+
 
 
 
@@ -18,4 +18,6 @@ a=Ticket(1000)
 a.travel()
 print(a.credit)
 
-    
+# sudo rm -rf venv/
+# python3 -m venv testenv
+# source testenv /bin/activate
