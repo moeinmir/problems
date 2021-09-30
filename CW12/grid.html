@@ -1,0 +1,103 @@
+<style>
+{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center; /* see in inspector ,to other value */
+  
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 20%;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  height: 400px;
+  font-size: 30px;
+}
+
+.flex-container > .grid {
+  border: solid 2px;
+  border-color: blue;
+  background-color: orange;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  height: 160px;
+  font-size: 30px;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 50% auto;
+  background-color: #2196F3;
+  padding: 10px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  margin: 3px;
+  height: 400px;
+}
+.grid-item-1 {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  margin: 3px;
+  height: 150px;
+}
+.grid-item-2 {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  margin: 3px;
+  height: 150px;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="grid-container" style='margin-bottom: 3px;'>
+      <p>Hello</p>
+    </div>
+    <div class="grid-container">
+      <div class="grid-item">1</div>
+      <div class="grid-item">
+          <div class="grid-container" style="margin-bottom: 3px;grid-template-columns: auto auto;">
+              <div class="grid-item-1">a</div>
+              <div class="grid-item-1">b</div>
+          </div>
+          <div class="grid-container">
+              <div class="grid-item-2">c</div>
+              <div class="grid-item-2">d</div>
+              <div class="grid-item-2">e</div>
+          </div>
+      </div>
+      <div class="grid-item">3</div>
+    </div>
+  </body>
+</html>
