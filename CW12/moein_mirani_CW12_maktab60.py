@@ -2,6 +2,7 @@ from typing import AsyncGenerator
 import redis
 redis_client = redis.Redis()
 redis_client.set("student_number", 1400)
+redis_client.set("course_id", 140000)
 
 
 class Student:
@@ -49,10 +50,9 @@ class Student:
             f'student:{self.student_number}:cource',
             {
                 f"name:{self.crse.course_id}": self.crsename,
-                f"term:{self.crse.course_id}": self.crseterm,
+                f"term:{self.crseterm}": f"{self.crse.course_id}:{self.crsename}",
             }
         )
-    import re
 
     def get_all_students(self):
         redis_client.hmset(
@@ -63,16 +63,16 @@ class Student:
         )
         return redis_client.hgetall("student")
 
-    @ staticmethod
-    def get_all_courses(cls):
-        redis_client.hgetall()
+    def get_all_courses(self):
+        return redis_client.hgetall(
+            redis_client.hgetall(f"student:{self.student_number}:cource"
+                                 )
+        )
 
-    @ staticmethod
-    def get_all_courses_by_term(cls, term):
-        pass
-
-
-redis_client.set("course_id", 140000)
+    def get_all_courses_by_term(self, term):
+        self.term = term
+        return redis_client.hgetall(
+            'student:{self.student_number}:cource', f"term:{self.term}")
 
 
 class Course:
@@ -97,3 +97,4 @@ a.add_course(10, 10)
 a.add_course(30, 30)
 print(redis_client.hgetall("student:1401:cource"))
 print(a.get_all_students())
+print(a.get_all_courses())
