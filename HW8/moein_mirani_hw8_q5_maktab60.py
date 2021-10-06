@@ -6,5 +6,5 @@ def cell_num_filter(cell_num):
     return "invalid phone number"
 
 print(cell_num_filter("+989121111111"))
-print(cell_num_filter("+98921111111"))
+print(cell_num_filter("+9892111001111"))
 
