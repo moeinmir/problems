@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <title>js</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="q1c.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <hr>
+        <table class="table m-2 custom-table" ass="table responsive" id="table">
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>lastname</th>
+                <th>Email</th>
+                <th>status</th>
+                <th>edit</th>
+                <th>delete</th>
+                <th>copy</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>alex</td>
+                    <td>ahmadi</td>
+                    <td>alexahmadi@gmail.com</td>
+                    <td>
+                        <button type="button" class="btn btn-success" onclick="change_status(this)">enable</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" onclick="edit_row_table(this)" data-toggle="modal"
+                            data-target="#exampleModal">
+                            modal
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="delet(this)">delete</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" onclick="copy(this)">copy</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="fname" class="col-form-label">fname:</label>
+                            <input value="name" type="text" class="form-control" id="fnm">
+                        </div>
+                        <div class="form-group">
+                            <label for="lname" class="col-form-label">lname:</label>
+                            <textarea class="form-control" id="lname"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="col-form-label">address:</label>
+                            <textarea class="form-control" id="address"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function change_status(status) {
+            if (status.innerHTML === "enable") {
+                status.innerHTML = "disable";
+                status.classList.remove("btn-success");
+                status.classList.toggle("btn-danger");
+            } else if (status.innerHTML === "disable") {
+                status.innerHTML = "not set";
+                status.classList.remove("btn-danger");
+                status.classList.toggle("btn-warning");
+            } else {
+                status.innerHTML = "enable";
+                status.classList.remove("btn-warning");
+                status.classList.toggle("btn-success");
+            }
+        }
+
+        function delet(row) {
+            row.parentNode.parentNode.remove()
+        }
+
+        function copy(that) {
+            let a = that.parentNode.parentNode.cloneNode(true)
+            console.log(a)
+            document.getElementById("table").appendChild(a)
+        }
+
+
+        function edit_row_table(that) {
+            a = that.parentNode.parentNode
+            console.log(a)
+            document.getElementById("fnm")["value"] = that.parentNode.parentNode.querySelectorAll('td')[1].innerHTML
+            document.getElementById("lname")["value"] = that.parentNode.parentNode.querySelectorAll('td')[2].innerHTML
+            document.getElementById("address")["value"] = that.parentNode.parentNode.querySelectorAll('td')[3].innerHTML
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
