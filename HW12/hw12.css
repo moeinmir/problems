@@ -1,24 +1,19 @@
+
+div, label, input{
+ 
+        border-radius: 25px;
+      }
+
+
 img {
     border: 5px solid #555;
+    border-radius: 25px;
   }
-
-
-
-
-
-.head{
-    text-align: center;
-    border-bottom: 1px solid black;
+a{
+    border-radius: 5px;
 }
 
-.nav{
-    border-bottom: 1px solid black;
-}
 
-.nava{
-    border-right: 1px solid black;
-    padding-right: 10px;
-}
 
 .navar{
     border: 1px solid black;
@@ -31,12 +26,6 @@ img {
     display: flex;
 }
 
-p {
-    text-align: justify;
-    padding : 2px 10px;
-    line-height: 2;
-
-}
 
 .column{
     display: flex;
@@ -57,7 +46,7 @@ p {
 .column_left img{
     float: left;
     padding-inline: 20px;
-}
+} 
 
 .column_right{
     border: 1px solid black;
@@ -67,21 +56,8 @@ p {
 
 }
 
-.footer {
 
-    padding: 1px;
-    text-align: center;
-    color: black;
-    font-size: 30px;
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    border-top: 1px solid black;
-}
-
-
-
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
     .column_right{
         width: 100%;
     }
