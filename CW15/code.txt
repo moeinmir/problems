@@ -1,0 +1,63 @@
+CREATE TABLE Tag (
+    id serial PRIMARY KEY,
+    name varchar(50)  NOT NULL,
+);
+
+
+CREATE TABLE Tag_post (
+        tag_post_id serial  PRIMARY KEY,
+        Tag_id int  NOT NULL,
+        posts_id int  NOT NULL,
+	FOREIGN KEY (tag_id)
+        REFERENCES tag (id),
+	FOREIGN KEY (Tag_id)
+        REFERENCES posts (id)
+    
+);
+
+
+CREATE TABLE comment (
+    id serial  PRIMARY KEY ,
+    content varchar(50)  NOT NULL,
+    user_id NOT NULL,
+    blog_id NOT NULL,
+  FOREIGN KEY (user_id)
+      REFERENCES user (id),
+  FOREIGN KEY (blog_id)
+      REFERENCES posts (id)
+	
+);
+
+CREATE TABLE likes (
+    id serial  PRIMARY KEY,
+    posts_id int  NOT NULL,
+    user_id int  NOT NULL,
+  FOREIGN KEY (post_id)
+      REFERENCES posts (id),
+  FOREIGN KEY (user_id)
+      REFERENCES user (id),
+);
+
+CREATE TABLE posts (
+    id serial  PRIMARY KEY,
+    caption varchar(50)  NOT NULL,
+    content varchar(250)  NOT NULL,
+    user_id int  NOT NULL,
+	  FOREIGN KEY (user_id)
+      REFERENCES user (id),
+);
+
+
+CREATE TABLE user (
+    id serial  PRIMARY KEY,
+    password varchar(50)  NOT NULL,
+    email varchar(50)  NOT NULL,
+    username varchar(50)  NOT NULL,
+);
+
+
+
+
+
+
+
