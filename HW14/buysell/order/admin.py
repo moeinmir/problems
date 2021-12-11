@@ -9,6 +9,7 @@ from .models import BuyyerFactor
 from .models import SellerFactor
 from .models import BuyyerEmail
 from .models import SellerEmail
+from .models import Tag
 
 # Register your models here.
 
@@ -22,4 +23,5 @@ admin.site.register(BuyyerFactor)
 admin.site.register(SellerFactor)
 admin.site.register(BuyyerEmail)
 admin.site.register(SellerEmail)
+admin.site.register(Tag)
 
