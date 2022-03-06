@@ -8,7 +8,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['post_title']
+        fields = '__all__'
 
 
 class CategorySerializar(serializers.ModelSerializer):

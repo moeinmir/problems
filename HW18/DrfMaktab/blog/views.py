@@ -5,12 +5,12 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 
-from blog.models import *
+from .models import *
 
-from rest_framework.decorators import api_view, authentication_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 
-from blog.serializers import *
+from .serializers import *
 
 
 @api_view(['GET', 'POST'])
@@ -35,6 +35,7 @@ def post_list_create(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 # @authentication_classes([])
+@permission_classes('IsAuthenticated')
 def post_detail_update_delete(request, id):
     # try:
     #     post = Post.objects.get(id=id)

@@ -17,7 +17,9 @@ urlpatterns = [
     path('post_list_rest/', post_list_rest, name='post_list_rest'),
     path('category_list_rest/', category_list_rest, name='category'),
     path('post_details_rest/<int:id>', post_details_rest),
-    path('category_details_rest/<int:id>', category_details_rest)
+    path('category_details_rest/<int:id>', category_details_rest),
+    path('post_details_rest_class/<int:pk>',
+         PostDetail.as_view(), name='post_details_rest_class'),
 
 
 ]

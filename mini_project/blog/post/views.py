@@ -1,4 +1,5 @@
 from django.db.models.fields import SlugField
+from django.db.models import Q
 from django.db.models.query import QuerySet
 from django.views.generic import TemplateView, ListView, DetailView
 from django.shortcuts import redirect, render, get_object_or_404
@@ -32,7 +33,6 @@ def post_details(request, slug):
     comment = Comment.objects.filter(related_post=post.id)
     if request.method == 'POST':
         if form.is_valid():
-            print(post.id)
             form.save(commit=False)
             form.related_post = post
             form.save()
@@ -40,14 +40,12 @@ def post_details(request, slug):
             return redirect(str('http://127.0.0.1:8000/blog/post_details/'+str(slug)))
 
     if request.method == 'GET':
-        print("ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg")
         return render(request, 'post_details.html', {'post': post, 'comment': comment, 'form': form})
 
 
 def category_details_view(request, category_id):
 
     category = Category.objects.get(id=category_id)
-    print(category)
 
     posts = Post.objects.filter(post_category=category.id)
     print(posts)
@@ -63,13 +61,10 @@ def register_form(request):
     form = RegisterForm()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        print(form.is_valid())
         if form.is_valid():
-
             User.objects.create_user(
                 form.cleaned_data['username'], form.cleaned_data['email'], form.cleaned_data['password'])
             # messages.add_message(request, 'A serious error occurred.')
-            print(form.cleaned_data['email'])
         return render(request, 'register.html', {'form': form})
 
     if request.method == 'GET':
@@ -81,7 +76,6 @@ def post_form(request):
 
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            print("aaaaaaaaaaaaaaaaaaaaaa")
 
             n = form.save()
             print(n.creator)
@@ -158,14 +152,8 @@ def mylogin(request):
     return render(request, 'login.html', {'form': form})
 
 
-# def logout(request):
-#     print('gggggggggggggggggggggqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqggggggggggggggggggggggggggg')
-#     logout(request)
-
-
 def search(request):
     q = request.GET.get('Q')
-    print(q)
 
     if not q:
         Error_MSG = "Please enter the search keyword"
