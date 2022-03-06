@@ -1,0 +1,154 @@
+ubonto@ubonto-Legion-Y540-15IRH-PG0:~/Desktop$ source .env1/bin/activate
+(.env1) ubonto@ubonto-Legion-Y540-15IRH-PG0:~/Desktop$ cd /media/ubonto/L/pyt/hom/HW14
+(.env1) ubonto@ubonto-Legion-Y540-15IRH-PG0:/media/ubonto/L/pyt/hom/HW14$ ls
+4_5784947435881106535.pdf  buysell  ERD.pdf  moein_mirani_hw14_maktab60.rar
+(.env1) ubonto@ubonto-Legion-Y540-15IRH-PG0:/media/ubonto/L/pyt/hom/HW14$ cd bysell
+bash: cd: bysell: No such file or directory
+(.env1) ubonto@ubonto-Legion-Y540-15IRH-PG0:/media/ubonto/L/pyt/hom/HW14$ cd buysell
+(.env1) ubonto@ubonto-Legion-Y540-15IRH-PG0:/media/ubonto/L/pyt/hom/HW14/buysell$ ls
+buysell  db.sqlite3  manage.py  order
+(.env1) ubonto@ubonto-Legion-Y540-15IRH-PG0:/media/ubonto/L/pyt/hom/HW14/buysell$ python manage.py
+
+Type 'manage.py help <subcommand>' for help on a specific subcommand.
+
+Available subcommands:
+
+[auth]
+    changepassword
+    createsuperuser
+
+[contenttypes]
+    remove_stale_contenttypes
+
+[django]
+    check
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    makemigrations
+    migrate
+    sendtestemail
+    shell
+    showmigrations
+    sqlflush
+    sqlmigrate
+    sqlsequencereset
+    squashmigrations
+    startapp
+    startproject
+    test
+    testserver
+
+[sessions]
+    clearsessions
+
+[staticfiles]
+    collectstatic
+    findstatic
+    runserver
+(.env1) ubonto@ubonto-Legion-Y540-15IRH-PG0:/media/ubonto/L/pyt/hom/HW14/buysell$ python manage.py shell
+Python 3.8.10 (default, Sep 28 2021, 16:10:42) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from order.models import Sellers
+>>> Sellers(name="name1",national_code="1123581321",email="moein.mirani@gmail.com").save()
+>>> Sellers(name="name2",national_code="2150008394",email="moein@gmail.com").save()
+>>> Category(name="cat1",discription="cat2")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Category' is not defined
+>>> Category(name="cat1",discription="cat2")
+KeyboardInterrupt
+>>> Category(name="cat1",discription="cat2")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Category' is not defined
+>>> from order.models import Category
+>>> Category(name="cat1",discription="cat2")
+<Category: cat1>
+>>> Category(name="cat3",discription="cat3")
+<Category: cat3>
+>>> from order.models import ListOfCom
+>>> S=Sellers.get(name="name1")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Sellers' has no attribute 'get'
+>>> S=Sellers.objects.get(name="name1")
+>>> C=Category.objects.get(name="cat3")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+order.models.Category.DoesNotExist: Category matching query does not exist.
+>>> C=Category.objects.get(name="cat1")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+order.models.Category.DoesNotExist: Category matching query does not exist.
+>>> Category(name="cat1",discription="cat2").save()
+>>> Category(name="cat3",discription="cat4").save()
+>>> c=Category.objects.get(name="cat2")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/query.py", line 435, in get
+    raise self.model.DoesNotExist(
+order.models.Category.DoesNotExist: Category matching query does not exist.
+>>> c=Category.objects.get(name="cat3")
+>>> ListOfCom(name="name1",price=22,remaining=2,Seller=S,)
+<ListOfCom: name1>
+>>> c.pk=None
+>>> c.save()
+>>> ListOfCom(name="name1",price=222,remaining=2,Seller=S,Category=c,discription="discriptions")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/base.py", line 498, in __init__
+    _setattr(self, prop, kwargs[prop])
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 545, in __set__
+    raise TypeError(
+TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use Category.set() instead.
+>>> L=ListOfCom(name="name1",price=222,remaining=2,Seller=S,discription="discriptions")
+>>> L.Category.add(c)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 536, in __get__
+    return self.related_manager_cls(instance)
+  File "/home/ubonto/Desktop/.env1/lib/python3.8/site-packages/django/db/models/fields/related_descriptors.py", line 851, in __init__
+    raise ValueError('"%r" needs to have a value for field "%s" before '
+ValueError: "<ListOfCom: name1>" needs to have a value for field "id" before this many-to-many relationship can be used.
+>>> L.save()
+>>> L.Category.add(c)
+>>> LI=LIstOfCom.objects.all().aggregate(count=Count(Category))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'LIstOfCom' is not defined
+>>> LI=LIstOfCom.objects.all().aggregate(count=Count("Category"))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'LIstOfCom' is not defined
+>>> LI=ListOfCom.objects.all().aggregate(count=Count("Category"))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Count' is not defined
+>>> from django.db.models import Avg, Max, Min, Count
+>>> LI=ListOfCom.objects.all().aggregate(count=Count("Category"))
+>>> print(LI)
+{'count': 1}
+>>> 
+KeyboardInterrupt
+>>> 
+
+

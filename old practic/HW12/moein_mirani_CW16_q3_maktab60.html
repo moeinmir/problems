@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap 4 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="q2c.css">
+
+</head>
+
+
+<body>
+
+
+    </div>
+    <script>
+        console.log(localStorage["num"])
+        console.log("test")
+        console.log(localStorage["num"])
+        if (localStorage["num"] == "NaN") {
+            console.log("helloiiiii")
+            console.log($('#counter').text() != 0)
+            $(".btn").click(function () {
+                // console.log($('#counter').text() != 0)
+
+                localStorage.setItem('num', parseInt($('#counter').text()) + 1)
+                // localStorage.setItem('num', parseInt($('#counter').text()) + 1)
+                console.log(parseInt($('#counter').text()) + 1)
+                let a = parseInt($('#counter').text()) + 1
+                // num = parseInt(localStorage["num"]) + 1
+                // console.log(num)
+                // $("#counter").text(num)
+                $('#counter').text(localStorage["num"])
+
+
+
+
+            })
+
+
+        }
+        else {
+            $('#counter').text(localStorage["num"])
+            $(".btn").click(function () {
+                // console.log($('#counter').text() != 0)
+
+                localStorage.setItem('num', parseInt(localStorage["num"]) + 1)
+                // localStorage.setItem('num', parseInt($('#counter').text()) + 1)
+                console.log(parseInt($('#counter').text()) + 1)
+                let a = parseInt($('#counter').text()) + 1
+                // num = parseInt(localStorage["num"]) + 1
+                // console.log(num)
+                // $("#counter").text(num)
+                $('#counter').text(localStorage["num"])
+
+
+
+
+            })
+        }
+
+        // $(function () {
+
+
+
+        //     $(".btn").click(function () {
+        //         // console.log($('#counter').text() != 0)
+
+        //         localStorage.setItem('num', parseInt($('#counter').text()) + 1)
+        //         // localStorage.setItem('num', parseInt($('#counter').text()) + 1)
+        //         console.log(parseInt($('#counter').text()) + 1)
+        //         let a = parseInt($('#counter').text()) + 1
+        //         // num = parseInt(localStorage["num"]) + 1
+        //         // console.log(num)
+        //         // $("#counter").text(num)
+        //         $('#counter').text(localStorage["num"])
+
+
+
+
+        //     });
+
+
+
+
+        $.get('http://ma-web.ir/Screenshot%20from%202021-07-18%2019-33-10.png', function (data, status) {
+
+            console.log(data.data)
+            for (let i = 0; i <= data.data.length; i++) {
+                console.log(data.data[i])
+                $(`#${i}`).attr('src', `${data.data[i].avatar}`)
+            }
+
+        })
+
+
+    </script>
+
+
+</body>
+
+</html>

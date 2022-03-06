@@ -1,0 +1,2 @@
+it will show how many posts each user published
+db.posts.aggregate([{$group:{_id:"$user",num_posts:{$sum:1}}}])

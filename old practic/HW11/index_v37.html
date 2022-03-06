@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <title>js</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style-theme.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="col-md-12">
+        <hr>
+        <table class="table responsive">
+            <thead>
+                <th>id</th>
+                <th>text</th>
+                <th>text</th>
+                <th>text</th>
+                <th>edit</th>
+                <th>delete</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>
+                        <!-- <button class="btn btn-primary">edit</button> -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                            onclick="edit_row_table(this)">
+                            modal
+                        </button>
+                    </td>
+                    <td>
+                        <span class="btn btn-danger" onclick="delete_row_table(this)">delete</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>
+                        <!-- <button class="btn btn-primary">edit</button> -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            modal
+                        </button>
+                    </td>
+                    <td>
+                        <span class="btn btn-danger" onclick="delete_row_table(this)">delete</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>
+                        <!-- <button class="btn btn-primary">edit</button> -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            modal
+                        </button>
+                    </td>
+                    <td>
+                        <span class="btn btn-danger" onclick="delete_row_table(this)">delete</span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>
+                        <!-- <button class="btn btn-primary">edit</button> -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            modal
+                        </button>
+                    </td>
+                    <td>
+                        <span class="btn btn-danger" onclick=delete_row_table(this)>delete</span>
+                    </td>
+                </tr>
+                <tr id="demo">
+                    <td>5</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>alex</td>
+                    <td>
+                        <!-- <button class="btn btn-primary">edit</button> -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            modal
+                        </button>
+                    </td>
+                    <td>
+                        <span id="demo" class="btn btn-danger" onclick=delete_row_table>delete</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+        </script>
+</body>
+
+</html>

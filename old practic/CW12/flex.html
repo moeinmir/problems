@@ -1,0 +1,72 @@
+<style>
+{
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .flex-container {
+    display: flex;
+    justify-content: center; /* see in inspector ,to other value */
+    
+    background-color: DodgerBlue;
+  }
+  
+  .flex-container > div {
+    background-color: #f1f1f1;
+    width: 20%;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    height: 400px;
+    font-size: 30px;
+  }
+  
+  .flex-container > .grid {
+    border: solid 2px;
+    border-color: blue;
+    background-color: orange;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    height: 160px;
+    font-size: 30px;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="flex-container" style='height: 100px; margin: 5px;'>
+        <p>Hello</p>
+    </div>
+    <div class="flex-container">
+        <div>1</div>
+        <div clss='flex-container' style='width:50%'>
+            <div class="flex-container">
+                <div class="flex-container" style="width:100%; height: 180px;">
+                    <div class='grid'>A</div>
+                    <div class='grid'>B</div>
+                </div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-container" style="width:100%; height: 180px;">
+                    <div class='grid'>C</div>
+                    <div class='grid'>E</div>
+                    <div class='grid'>F</div>
+                </div>
+            </div>
+        </div>
+        <div>3</div>
+    </div>
+</body>
+</html>
