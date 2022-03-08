@@ -1,0 +1,1 @@
+1:what is standard input and what different does it have with user input?
