@@ -1,1 +1,3 @@
 1:what is standard input and what different does it have with user input?
+2:https://stackoverflow.com/questions/218384/what-is-a-nullpointerexception-and-how-do-i-fix-it?
+3: what is the difference between premetive type and refference type?
