@@ -1,6 +1,7 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+//import Java.util.IllegalArgumentException;
 public class Deque<Item> implements Iterable<Item> {
     public class Node {
         public Item item;
@@ -29,6 +30,14 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public void addFirst(Item item) {
+        System.out.println("&&&&&&&&");
+        System.out.println(item);
+        System.out.println(item==null);
+        System.out.println("*********");
+
+        if (item == null){
+            throw new IllegalArgumentException();
+        }
         if (isEmpty()) {
             first = new Node();
             first.item = item;
@@ -121,6 +130,7 @@ public class Deque<Item> implements Iterable<Item> {
         my_object.addLast(108);
         my_object.removeFirst();
         my_object.removeLast();
+        // my_object.addFirst(null);
 
         Iterator<Integer> my_iter = my_object.iterator();
         while (my_iter.hasNext()) {
