@@ -7,6 +7,8 @@
 
 import edu.princeton.cs.algs4.StdIn;
 
+import java.util.Iterator;
+
 public class Permutation {
     public static void main(String[] args) {
         int num = Integer.parseInt(args[0]);
@@ -17,9 +19,40 @@ public class Permutation {
             // String current = StdIn.readString();
             my_randomized_queue.enqueue(StdIn.readString());
         }
-        for (int i = 0; i < num; i++) {
-            // String current1 = my_randomized_queue.dequeue();
-            System.out.println(my_randomized_queue.dequeue());
+        System.out.println("***************");
+        Iterator<String> my_iter = my_randomized_queue.iterator();
+        while (my_iter.hasNext()) {
+            System.out.println(my_iter.next());
         }
+        System.out.println("***************");
+        System.out.println(my_randomized_queue.dequeue());
+        System.out.println("***************");
+        my_iter = my_randomized_queue.iterator();
+        System.out.println("***************");
+        while (my_iter.hasNext()) {
+            System.out.println(my_iter.next());
+        }
+        System.out.println("***************");
+        System.out.println(my_randomized_queue.dequeue());
+        System.out.println("***************");
+        my_iter = my_randomized_queue.iterator();
+        while (my_iter.hasNext()) {
+            System.out.println(my_iter.next());
+        }
+        System.out.println("***************");
+        System.out.println(my_randomized_queue.dequeue());
+        System.out.println("***************");
+        my_iter = my_randomized_queue.iterator();
+        System.out.println("***************");
+        while (my_iter.hasNext()) {
+            System.out.println(my_iter.next());
+        }
+        System.out.println("***************");
+
+
+        // System.out.println("&&&&&&&&&&&&&&&&&&");
+        // for (int k = 0; k < num; k++) {
+        //     System.out.println(my_randomized_queue.dequeue());
+        // }
     }
 }

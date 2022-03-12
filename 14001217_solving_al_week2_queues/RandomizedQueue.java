@@ -10,16 +10,18 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
-    public class Node {
-        public Item item;
-        public Node next;
-
+    private class Node {
+        private Item item;
+        private Node next;
+    }
+    
+    public RandomizedQueue() {
     }
 
-    public Node first;
-    public int size;
 
-
+    private Node first;
+    private int size = 0;
+    private Node current1;
     // construct an empty randomized queue
     // public RandomizedQueue()
 
@@ -61,17 +63,19 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             throw new NoSuchElementException();
         }
         int rand = StdRandom.uniform(size);
-        Node current1 = first;
-        for (int i = 0; i < rand; i++) {
+        current1 = first;
+        for (int i = 0; i - 1 < rand; i++) {
             current1 = current1.next;
         }
-        if (current1.next != null) {
-            current1.next = current1.next.next;
-        }
-        if (current1.next == null) {
+        Node current2 = current1.next;
+        if (current1.next.next == null) {
             current1.next = null;
         }
-        return current1.item;
+        else {
+            current1.next = current1.next.next;
+        }
+        size = size - 1;
+        return current2.item;
     }
 
     // return a random item (but do not remove it)
@@ -92,7 +96,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         System.out.println("hello");
         return new NewIterator();
     }
-
 
     private class NewIterator implements Iterator<Item> {
         private Node current1 = first;
@@ -125,7 +128,6 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         System.out.println("*************");
         System.out.println(my_object.sample());
         System.out.println("###########");
-
         my_object.enqueue(1004);
         my_object.enqueue(1005);
         my_object.enqueue(1006);
