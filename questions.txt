@@ -1,3 +1,6 @@
 1:what is standard input and what different does it have with user input?
 2:https://stackoverflow.com/questions/218384/what-is-a-nullpointerexception-and-how-do-i-fix-it?
 3: what is the difference between premetive type and refference type?
+4: i didnt understand the callback method, using interface, using a function as an argument to another function and how we should use it to sort different type of arrays.
+5: i didnt understan the Insertion sort: partially-sorted arrays in week 2 part 2 slides.
+6: how exactly h sort helping us?

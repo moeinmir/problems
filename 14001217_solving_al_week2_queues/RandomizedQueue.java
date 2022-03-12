@@ -35,6 +35,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // add the item
     public void enqueue(Item item) {
+        if (item == null) {
+            throw new IllegalArgumentException();
+        }
         if (isEmpty()) {
             first = new Node();
             first.item = item;
@@ -54,17 +57,28 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // remove and return a random item
     public Item dequeue() {
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
         int rand = StdRandom.uniform(size);
         Node current1 = first;
         for (int i = 0; i < rand; i++) {
             current1 = current1.next;
         }
-        current1.next = current1.next.next;
+        if (current1.next != null) {
+            current1.next = current1.next.next;
+        }
+        if (current1.next == null) {
+            current1.next = null;
+        }
         return current1.item;
     }
 
     // return a random item (but do not remove it)
     public Item sample() {
+        if (this.isEmpty()) {
+            throw new NoSuchElementException();
+        }
         int rand = StdRandom.uniform(size);
         Node current = first;
         for (int i = 0; i < rand; i++) {
@@ -96,6 +110,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             return item;
         }
 
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 
     // unit testing (required)
