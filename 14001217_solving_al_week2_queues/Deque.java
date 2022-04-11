@@ -3,15 +3,15 @@ import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
     private class Node {
-        public Item item;
-        public Node next;
-        public Node prev;
+        private Item item;
+        private Node next;
+        private Node prev;
     }
 
     private Node first;
     private Node last;
     private Node current;
-    public int size;
+    private int size;
 
     public Deque() {
         first = null;
@@ -29,10 +29,6 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public void addFirst(Item item) {
-        System.out.println("&&&&&&&&");
-        System.out.println(item);
-        System.out.println(item == null);
-        System.out.println("*********");
 
         if (item == null) {
             throw new IllegalArgumentException();
@@ -45,7 +41,6 @@ public class Deque<Item> implements Iterable<Item> {
             last = first;
         }
         else {
-            // current = new Node();
             Node oldfirst = first;
             first = new Node();
             first.item = item;
@@ -101,7 +96,6 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public Iterator<Item> iterator() {
-        System.out.println("hello");
         return new NewIterator();
     }
 
@@ -124,12 +118,9 @@ public class Deque<Item> implements Iterable<Item> {
         public void remove() {
             throw new UnsupportedOperationException();
         }
-
-
     }
 
     public static void main(String[] args) {
-        System.out.println("hello");
         Deque<Integer> my_object = new Deque<Integer>();
         my_object.addFirst(100);
         my_object.addFirst(101);
@@ -142,8 +133,6 @@ public class Deque<Item> implements Iterable<Item> {
         my_object.addLast(108);
         my_object.removeFirst();
         my_object.removeLast();
-        // my_object.addFirst(null);
-
         Iterator<Integer> my_iter = my_object.iterator();
         while (my_iter.hasNext()) {
             System.out.println(my_iter.next());

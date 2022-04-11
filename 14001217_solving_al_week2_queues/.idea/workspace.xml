@@ -166,7 +166,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Permutation.java</url>
-          <line>42</line>
+          <line>20</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
