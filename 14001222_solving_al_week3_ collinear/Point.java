@@ -71,10 +71,10 @@ public class Point implements Comparable<Point> {
             return ((double) (this.y - that.y)) / ((double) (this.x - that.x));
         }
         else if (this.y > that.y) {
-            return Double.POSITIVE_INFINITY;
+            return Double.NEGATIVE_INFINITY;
         }
         else if (this.y < that.y) {
-            return Double.NEGATIVE_INFINITY;
+            return Double.POSITIVE_INFINITY;
         }
         else {
             throw new InputMismatchException();
@@ -96,17 +96,17 @@ public class Point implements Comparable<Point> {
      */
     public int compareTo(Point that) {
         if (this.y < that.y) {
-            return -1;
-        }
-        else if (this.y > that.y) {
             return 1;
         }
+        else if (this.y > that.y) {
+            return -1;
+        }
         else {
-            if (this.x < this.y) {
-                return -1;
-            }
-            else if (this.x > this.y) {
+            if (this.x < that.x) {
                 return 1;
+            }
+            else if (this.x > that.x) {
+                return -1;
             }
             else {
                 return 0;
@@ -174,8 +174,6 @@ public class Point implements Comparable<Point> {
         // System.out.println("*********");
         Arrays.sort(point, my_comparator);
         System.out.println(Arrays.asList(point));
-        System.out.println("*********");
-        System.out.println("##########");
     }
 }
 
