@@ -6,30 +6,31 @@
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.MinPQ;
-import edu.princeton.cs.algs4.Queue;
+
+import java.util.Iterator;
 
 public class Solver {
     private SearchNode fin;
+    private SearchNode twinFin;
     private boolean solveable;
+    private MinPQ<SearchNode> searchNodes = new MinPQ<SearchNode>();
+    // private Queue<Board> neighbers = new Queue<Board>();
+    private MinPQ<SearchNode> twinSearchNodes = new MinPQ<SearchNode>();
+    // private Queue<Board> twinNeighbers = new Queue<Board>();
+    private SearchNode initial_search_node;
+    private SearchNode twinInitial_search_node;
+    private Board initBoard;
+    private Board twinBoard;
 
     private class SearchNode implements Comparable<SearchNode> {
         private SearchNode prevNode = null;
         private Board current = null;
         private int moveNumber = 0;
         private int priority = 0;
-        private boolean issolveable;
-        private Board[][] initial2;
+        private int manhattanCatch;
 
         @Override
         public int compareTo(SearchNode that) {
-			/*
-			if (this.priority > o.getPriority())
-				return 1;
-			else if (this.priority < o.getPriority())
-				return -1;
-			else
-				return 0;*/
-
             return this.priority - that.priority;
         }
 
@@ -37,51 +38,66 @@ public class Solver {
             prevNode = preveN;
             current = currentB;
             moveNumber = movesN;
-            priority = movesN + currentB.manhattan();
+            manhattanCatch = currentB.manhattan();
+            priority = movesN + manhattanCatch;
         }
     }
 
 
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board initial) {
-        MinPQ<SearchNode> searchNodes = new MinPQ<SearchNode>();
-        Queue<Board> neighbers = new Queue<Board>();
-        // MinPQ<SearchNode> searchNodes2 = new MinPQ<SearchNode>();
-        // Queue<Board> neighbers2 = new Queue<Board>();
+        searchNodes.insert(new SearchNode(initial, 0, null));
+        twinSearchNodes.insert(new SearchNode(initial.twin(), 0, null));
 
-
-        SearchNode initial_search_node;
-        // SearchNode initial_search_node2;
-
-
-        initial_search_node = new SearchNode(initial, 0, null);
-        searchNodes.insert(initial_search_node);
 
         while (true) {
             SearchNode cur = searchNodes.delMin();
-            if (cur.current.manhattan() == 0) {
-                this.fin = cur;
-                break;
-            }
+            SearchNode twinCur = twinSearchNodes.delMin();
             for (Board n : cur.current.neighbors()) {
+                if (cur.prevNode != null) {
+                    if (n.equals(cur.prevNode.current)) {
+                        continue;
+                    }
+                }
                 SearchNode searchNo = new SearchNode(n, cur.moveNumber + 1, cur);
                 searchNodes.insert(searchNo);
             }
+            if (cur.manhattanCatch == 0) {
+                this.fin = cur;
+                this.solveable = true;
+                break;
+            }
+            for (Board m : twinCur.current.neighbors()) {
+                if (twinCur.prevNode != null) {
+                    if (m.equals(twinCur.prevNode.current)) {
+                        continue;
+                    }
+                }
+                SearchNode twinSearchNo = new SearchNode(m, twinCur.moveNumber + 1, twinCur);
+                twinSearchNodes.insert(twinSearchNo);
+            }
+            if (twinCur.manhattanCatch == 0) {
+                this.twinFin = twinCur;
+                this.solveable = false;
+                break;
+            }
+
+            Iterator<SearchNode> myIter = searchNodes.iterator();
+            int i = 0;
+            // while (myIter.hasNext()) {
+            //     System.out.println(myIter.next().current.manhattan());
+            //     i++;
+            // }
         }
     }
 
-    // is the initial board solvable? (see below)
-    // public boolean isSolvable()
+    public int moves() {
+        if (!this.solveable)
+            return -1;
+        return this.fin.moveNumber;
 
-    // min number of moves to solve initial board; -1 if unsolvable
-    // public int moves() {
-    //     return
-    // }
+    }
 
-    // sequence of boards in a shortest solution; null if unsolvable
-    // public Iterable<Board> solution()
-
-    // test client (see below)
     public static void main(String[] args) {
         In in = new In(args[0]);
         int n = in.readInt();
@@ -90,12 +106,14 @@ public class Solver {
             for (int j = 0; j < n; j++)
                 tiles[i][j] = in.readInt();
         Board initial = new Board(tiles);
-
         // solve the puzzle
         Solver solver = new Solver(initial);
-        System.out.println(solver.fin.moveNumber);
 
-
+        if (solver.solveable) {
+            System.out.println(solver.fin.moveNumber);
+        }
+        else {
+            System.out.println("it is not solveable");
+        }
     }
-
 }

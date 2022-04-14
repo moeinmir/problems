@@ -16,7 +16,7 @@ public class Board {
     public Board(int[][] tiles) {
         width = tiles[0].length;
         board = new int[width * width];
-        
+
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < width; j++) {
                 board[i * width + j] = tiles[i][j];
@@ -105,6 +105,29 @@ public class Board {
         return true;
     }
 
+    public Board twin() {
+        int[] twinBoard = new int[this.width * this.width];
+        int[][] twinTile;
+        for (int i = 0; i < this.width * this.width; i++) {
+            twinBoard[i] = this.board[i];
+        }
+        for (int i = 0; i < this.width * this.width; i++) {
+            if (this.board[i] != 0 && this.board[i + 1] != 0) {
+                twinBoard[i] = this.board[i + 1];
+                twinBoard[i + 1] = this.board[i];
+                break;
+            }
+        }
+        twinTile = new int[this.width][this.width];
+        for (int j = 0; j < this.width; j++) {
+            for (int k = 0; k < this.width; k++) {
+                twinTile[j][k] = twinBoard[j * this.width + k];
+            }
+        }
+        return new Board(twinTile);
+    }
+
+
     //
     // // all neighboring boards
     public Iterable<Board> neighbors() {
@@ -160,6 +183,8 @@ public class Board {
         Board test_board = new Board(test_array);
         Board test_board2 = new Board(test_array2);
         System.out.println(test_board.toString());
+        System.out.println(test_board.twin().toString());
+        System.out.println("&&&&&&&&&&&&&&&&&&&");
         System.out.println(test_board.hamming());
         System.out.println(test_board.width);
         System.out.println(test_board.manhattan());
