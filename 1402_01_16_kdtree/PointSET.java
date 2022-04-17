@@ -14,6 +14,8 @@ import java.util.Iterator;
 
 public class PointSET {
     private SET<Point2D> pointSet;
+    private Point2D nearest;
+    private Double dist;
 
     public PointSET() {
         pointSet = new SET<Point2D>();
@@ -63,10 +65,18 @@ public class PointSET {
     }             // all points that are inside the rectangle (or on the boundary)
 
     //
-    // public Point2D nearest(
-    //         Point2D p) {
-    //
-    // }             // a nearest neighbor in the set to point p; null if the set is empty
+    public Point2D nearest(
+
+            Point2D p) {
+        dist = Double.POSITIVE_INFINITY;
+        for (Point2D pointSearch : pointSet) {
+            if (pointSearch.distanceTo(p) < dist) {
+                dist = pointSearch.distanceTo(p);
+                nearest = pointSearch;
+            }
+        }
+        return nearest;
+    }             // a nearest neighbor in the set to point p; null if the set is empty
 
     //
     public static void main(
@@ -77,5 +87,7 @@ public class PointSET {
                 testPointSet.insert(new Point2D(i, j));
             }
         }
+        System.out.println(testPointSet.nearest(new Point2D(2, 2)));
+        System.out.println(testPointSet.contains(new Point2D(11, 11)));
     }                 // unit testing of the methods (optional)
 }
